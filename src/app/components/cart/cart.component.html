@@ -20,17 +20,17 @@
         <tr *ngFor="let item of cartItems">
           <td>{{item.productName}}</td>
           <td>{{item.quantity}}</td>
-          <td>{{item.price | currency}}</td>
-          <td>{{calculateTTC(item) | currency}}</td>
-          <td>{{calculateTax(item) | currency}}</td>
-          <td>{{calculateTTC(item) * item.quantity | currency}}</td>
+          <td>{{item.price}}€</td>
+          <td>{{calculateTTC(item) }} €</td>
+          <td>{{calculateTax(item) }} €</td>
+          <td>{{calculateTTC(item) * item.quantity}}€</td>
           <td>
             <button (click)="removeFromCart(item.id)">Remove</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <p>Total Taxes: {{calculateTotalTax() | currency}}</p>
-    <p>Total Price (incl. VAT): {{calculateTotalTTC() | currency}}</p>
+    <p>Total Taxes: {{calculateTotalTax()}} €</p>
+    <p>Total Price (incl. VAT): {{calculateTotalTTC()}} €</p>
   </div>
 </div>

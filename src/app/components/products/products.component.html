@@ -10,7 +10,7 @@
     <div *ngFor="let product of filteredProducts" class="product-card">
       <h3>{{product.productName}}</h3>
       <p>Category: {{product.category}}</p>
-      <p>Price: {{calculateTTC(product) | currency}}</p>
+      <p>Price: {{calculateTTC(product) }}€</p>
       <p *ngIf="product.quantity > 0">In stock: {{product.quantity}}</p>
       <p *ngIf="product.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="product.quantity > 0">
