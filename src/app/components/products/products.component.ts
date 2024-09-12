@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+
   filterByCategory(category: string): void {
     this.selectedCategory = category;
     this.filteredProducts = category === 'All' 
@@ -44,4 +45,7 @@ export class ProductsComponent implements OnInit {
   calculateTTC(product: Product): number {
     return this.productService.calculateTTC(product.price, product.category, product.isImported);
   }
+
+ 
+
 }

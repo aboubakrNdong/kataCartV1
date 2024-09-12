@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -10,7 +11,9 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.productService.getCartItems().subscribe(items => {
@@ -41,4 +44,9 @@ export class CartComponent implements OnInit {
       total + this.calculateTTC(item) * item.quantity, 0
     );
   }
+
+  goBack(): void {
+    this.router.navigate(['/']);
+  }
+
 }

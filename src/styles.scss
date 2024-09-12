@@ -2,6 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
 .container {
@@ -20,13 +22,43 @@ body {
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="number"] {
+  width: 50px;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  background-color: #f1f1f1;
+  background-color: #343a40;
+  margin: 0;
 }
 
 nav ul li {
@@ -35,7 +67,12 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+nav ul li a:hover {
+  color: #007bff;
 }
 
 @media (max-width: 768px) {
