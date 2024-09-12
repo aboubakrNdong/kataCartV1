@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Product } from 'src/app/models/product';
@@ -7,9 +7,6 @@ import { Product } from 'src/app/models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private products: Product[] = [
-    // Paste the JSON data here
-  ];
 
   private cartItems: Product[] = [];
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
@@ -18,9 +15,8 @@ export class ProductService {
   }
 
  
-
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('assets/products.json'); // Ensure the JSON file is placed in the assets folder
+    return this.http.get<Product[]>('assets/products.json'); //get data
   }
 
   getCartItems(): Observable<Product[]> {
@@ -51,11 +47,12 @@ export class ProductService {
       taxRate += 5;
     }
     const tax = price * taxRate / 100;
-    return Math.ceil(tax * 20) / 20; // Round up to nearest 0.05
+    return Math.ceil(tax * 20) / 20; // Rounded to 0.05
   }
 
   calculateTTC(price: number, category: string, isImported: boolean): number {
     const tax = this.calculateTax(price, category, isImported);
-    return parseFloat((price + tax).toFixed(2));
+    const total = price + tax;
+    return Math.round(total * 100) / 100; // Round to 2 decimal
   }
 }
