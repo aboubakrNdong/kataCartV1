@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NOT_AVAILABLE_MESSAGE } from 'src/app/constants/const-var';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -12,6 +13,8 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   categories: string[] = [];
   selectedCategory: string = 'All';
+  NOT_AVAILABLE_MESSAGE = NOT_AVAILABLE_MESSAGE;
+
 
   constructor(private productService: ProductService) { }
 

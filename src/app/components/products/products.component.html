@@ -12,7 +12,7 @@
       <p>Category: {{product.category}}</p>
       <p>Price: {{calculateTTC(product) | currency}}</p>
       <p *ngIf="product.quantity > 0">In stock: {{product.quantity}}</p>
-      <p *ngIf="product.quantity === 0">Not available</p>
+      <p *ngIf="product.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="product.quantity > 0">
         <input type="number" [(ngModel)]="product.selectedQuantity" min="1" [max]="product.quantity">
         <button (click)="addToCart(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
