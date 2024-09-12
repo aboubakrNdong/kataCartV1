@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Products</h2>
+  <div>
+    <label for="category">Filter by category: </label>
+    <select id="category" [(ngModel)]="selectedCategory" (change)="filterByCategory(selectedCategory)">
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
+  </div>
+  <div class="product-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <h3>{{product.productName}}</h3>
+      <p>Category: {{product.category}}</p>
+      <p>Price: {{calculateTTC(product) | currency}}</p>
+      <p *ngIf="product.quantity > 0">In stock: {{product.quantity}}</p>
+      <p *ngIf="product.quantity === 0">Not available</p>
+      <div *ngIf="product.quantity > 0">
+        <input type="number" [(ngModel)]="product.selectedQuantity" min="1" [max]="product.quantity">
+        <button (click)="addToCart(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

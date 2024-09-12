@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Shopping Cart</h2>
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty</p>
+  </div>
+  <div *ngIf="cartItems.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Unit Price (excl. VAT)</th>
+          <th>Unit Price (incl. VAT)</th>
+          <th>Total Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{item.productName}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.price | currency}}</td>
+          <td>{{calculateTTC(item) | currency}}</td>
+          <td>{{calculateTTC(item) * item.quantity | currency}}</td>
+          <td>
+            <button (click)="removeFromCart(item.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Total: {{calculateTotalTTC() | currency}}</p>
+  </div>
+</div>
