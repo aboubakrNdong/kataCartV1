@@ -1,2 +1,8 @@
-export const CATEGORIES: string[] = 
-['All', 'Food', 'Medecine', 'Books', 'Electric', 'Parfum'];
+export const CATEGORIES: string[] = [
+  'All',
+  'Food',
+  'Medecine',
+  'Books',
+  'Electric',
+  'Parfum'
+];

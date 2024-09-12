@@ -22,8 +22,18 @@ export class CartComponent implements OnInit {
     this.productService.removeFromCart(productId);
   }
 
+  calculateTax(product: Product): number {
+    return this.productService.calculateTax(product.price, product.category, product.isImported);
+  }
+
   calculateTTC(product: Product): number {
     return this.productService.calculateTTC(product.price, product.category, product.isImported);
+  }
+
+  calculateTotalTax(): number {
+    return this.cartItems.reduce((total, item) => 
+      total + this.calculateTax(item) * item.quantity, 0
+    );
   }
 
   calculateTotalTTC(): number {

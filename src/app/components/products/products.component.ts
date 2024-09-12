@@ -34,6 +34,8 @@ export class ProductsComponent implements OnInit {
 
   addToCart(product: Product, quantity: number): void {
     this.productService.addToCart(product, quantity);
+    // Decrease the product quantity
+     product.quantity -= quantity;
   }
 
   calculateTTC(product: Product): number {

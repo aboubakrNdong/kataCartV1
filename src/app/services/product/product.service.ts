@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Product } from 'src/app/models/product';
 
 @Injectable({
@@ -14,11 +14,10 @@ export class ProductService {
   private cartItems: Product[] = [];
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  /*getProducts(): Product[] {
-    return this.products;
-  }*/
+ 
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('assets/products.json'); // Ensure the JSON file is placed in the assets folder
@@ -42,8 +41,8 @@ export class ProductService {
     this.cartItems = this.cartItems.filter(item => item.id !== productId);
     this.cartItemsSubject.next(this.cartItems);
   }
-
-  calculateTTC(price: number, category: string, isImported: boolean): number {
+  
+  calculateTax(price: number, category: string, isImported: boolean): number {
     let taxRate = 0;
     if (category !== 'Food' && category !== 'Medecine') {
       taxRate += category === 'Books' ? 10 : 20;
@@ -51,7 +50,12 @@ export class ProductService {
     if (isImported) {
       taxRate += 5;
     }
-    const tax = Math.ceil((price * taxRate / 100) * 20) / 20;
+    const tax = price * taxRate / 100;
+    return Math.ceil(tax * 20) / 20; // Round up to nearest 0.05
+  }
+
+  calculateTTC(price: number, category: string, isImported: boolean): number {
+    const tax = this.calculateTax(price, category, isImported);
     return parseFloat((price + tax).toFixed(2));
   }
 }
