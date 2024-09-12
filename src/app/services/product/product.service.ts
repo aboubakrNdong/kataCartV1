@@ -2,21 +2,33 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+  private products: Product[] = [];
   private cartItems: Product[] = [];
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
 
   constructor(private http: HttpClient) {
   }
 
- 
+ //check if products are already stored, if not, fetch them from the json file
+
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('assets/products.json'); //get data
+    if (this.products.length > 0) {
+      return of(this.products);
+    } else {
+      return this.http.get<Product[]>('assets/products.json').pipe(
+        map(products => {
+          this.products = products;
+          return products;
+        })
+      );
+    }
   }
 
   getCartItems(): Observable<Product[]> {
@@ -38,6 +50,8 @@ export class ProductService {
     this.cartItemsSubject.next(this.cartItems);
   }
   
+  //change this function in case it is necessary to apply the 5% on first-time products requires  
+
   calculateTax(price: number, category: string, isImported: boolean): number {
     let taxRate = 0;
     if (category !== 'Food' && category !== 'Medecine') {
