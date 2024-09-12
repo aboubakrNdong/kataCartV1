@@ -42,12 +42,13 @@ export class ProductService {
     let taxRate = 0;
     if (category !== 'Food' && category !== 'Medecine') {
       taxRate += category === 'Books' ? 10 : 20;
+      if (isImported) {
+        taxRate += 5;
+      }
     }
-    if (isImported) {
-      taxRate += 5;
-    }
+    
     const tax = price * taxRate / 100;
-    return Math.ceil(tax * 20) / 20; // Rounded to 0.05
+    return Math.round(tax * 20) / 20; // Rounded to 0.05
   }
 
   calculateTTC(price: number, category: string, isImported: boolean): number {
