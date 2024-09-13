@@ -17,18 +17,9 @@ export class ProductService {
 
  //check if products are already stored, if not, fetch them from the json file
 
-  getProducts(): Observable<Product[]> {
-    if (this.products.length > 0) {
-      return of(this.products);
-    } else {
-      return this.http.get<Product[]>('assets/products.json').pipe(
-        map(products => {
-          this.products = products;
-          return products;
-        })
-      );
-    }
-  }
+ getProducts(): Observable<Product[]> {
+  return this.http.get<Product[]>('assets/products.json'); //get data
+}
 
   getCartItems(): Observable<Product[]> {
     return this.cartItemsSubject.asObservable();
