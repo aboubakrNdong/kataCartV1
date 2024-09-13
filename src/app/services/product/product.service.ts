@@ -35,7 +35,7 @@ export class ProductService {
     return this.cartItemsSubject.asObservable();
   }
 
-  addToCart(product: Product, quantity: number): void {
+  addProductToCart(product: Product, quantity: number): void {
     const existingItem = this.cartItems.find(item => item.id === product.id);
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -45,14 +45,14 @@ export class ProductService {
     this.cartItemsSubject.next(this.cartItems);
   }
 
-  removeFromCart(productId: number): void {
+  removeProductFromCart(productId: number): void {
     this.cartItems = this.cartItems.filter(item => item.id !== productId);
     this.cartItemsSubject.next(this.cartItems);
   }
   
   //change this function in case it is necessary to apply the 5% on first-time products requires  
 
-  calculateTax(price: number, category: string, isImported: boolean): number {
+  calculateProductTax(price: number, category: string, isImported: boolean): number {
     let taxRate = 0;
     if (category !== 'Food' && category !== 'Medecine') {
       taxRate += category === 'Books' ? 10 : 20;
@@ -65,8 +65,8 @@ export class ProductService {
     return Math.round(tax * 20) / 20; // Rounded to 0.05
   }
 
-  calculateTTC(price: number, category: string, isImported: boolean): number {
-    const tax = this.calculateTax(price, category, isImported);
+  calculateTotalCost(price: number, category: string, isImported: boolean): number {
+    const tax = this.calculateProductTax(price, category, isImported);
     const total = price + tax;
     return Math.round(total * 100) / 100; // Round to 2 decimal
   }

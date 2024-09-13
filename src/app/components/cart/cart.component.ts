@@ -21,31 +21,31 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeFromCart(productId: number): void {
-    this.productService.removeFromCart(productId);
+  removeProductFromCart(productId: number): void {
+    this.productService.removeProductFromCart(productId);
   }
 
-  calculateTax(product: Product): number {
-    return this.productService.calculateTax(product.price, product.category, product.isImported);
+  calculateProductTax(product: Product): number {
+    return this.productService.calculateProductTax(product.price, product.category, product.isImported);
   }
 
-  calculateTTC(product: Product): number {
-    return this.productService.calculateTTC(product.price, product.category, product.isImported);
+  calculateProductTotalCost(product: Product): number {
+    return this.productService.calculateTotalCost(product.price, product.category, product.isImported);
   }
 
-  calculateTotalTax(): number {
+  calculateTotalTaxAmount(): number {
     return this.cartItems.reduce((total, item) => 
-      total + this.calculateTax(item) * item.quantity, 0
+      total + this.calculateProductTax(item) * item.quantity, 0
     );
   }
 
-  calculateTotalTTC(): number {
+  calculateTotalCostAmount(): number {
     return this.cartItems.reduce((total, item) => 
-      total + this.calculateTTC(item) * item.quantity, 0
+      total + this.calculateProductTotalCost(item) * item.quantity, 0
     );
   }
 
-  goBack(): void {
+  navigateBackToProducts(): void {
     this.router.navigate(['/']);
   }
 

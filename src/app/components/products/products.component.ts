@@ -15,7 +15,6 @@ export class ProductsComponent implements OnInit {
   selectedCategory: string = 'All';
   NOT_AVAILABLE_MESSAGE = NOT_AVAILABLE_MESSAGE;
 
-
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -24,26 +23,26 @@ export class ProductsComponent implements OnInit {
       // Initialize selectedQuantity for each product
       this.products.forEach(product => product.selectedQuantity = 1);
       this.filteredProducts = this.products;
-      this.categories = ['All', ...new Set(this.products.map(p => p.category))];
+      this.categories = ['All', ...new Set(this.products.map(p => p.category))]; //TODO remove hard code ALL
     });
   }
 
    //TODO add loader to app
-  filterByCategory(category: string): void {
+   filterProductsByCategory(category: string): void {
     this.selectedCategory = category;
     this.filteredProducts = category === 'All' 
       ? this.products 
       : this.products.filter(p => p.category === category);
   }
 
-  addToCart(product: Product, quantity: number): void {
-    this.productService.addToCart(product, quantity);
+  addProductToCart(product: Product, quantity: number): void {
+    this.productService.addProductToCart(product, quantity);
     // Decrease the product quantity
      product.quantity -= quantity;
   }
 
-  calculateTTC(product: Product): number {
-    return this.productService.calculateTTC(product.price, product.category, product.isImported);
+  calculateTotalCostWithTax(product: Product): number {
+    return this.productService.calculateTotalCost(product.price, product.category, product.isImported);
   }
   
   //TODO add image to product

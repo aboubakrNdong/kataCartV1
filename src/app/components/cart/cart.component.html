@@ -21,20 +21,20 @@
           <td>{{item.productName}}</td>
           <td>{{item.quantity}}</td>
           <td>{{item.price}}€</td>
-          <td>{{calculateTTC(item) }} €</td>
-          <td>{{calculateTax(item) }} €</td>
-          <td>{{calculateTTC(item) * item.quantity}}€</td>
+          <td>{{calculateProductTotalCost(item) }} €</td>
+          <td>{{calculateProductTax(item) }} €</td>
+          <td>{{calculateProductTotalCost(item) * item.quantity}}€</td>
           <td>
-            <button (click)="removeFromCart(item.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Remove</button>
+            <button (click)="removeProductFromCart(item.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Remove</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <p>Total Taxes: {{calculateTotalTax()}} €</p>
-    <p>Total Price (incl. VAT): {{calculateTotalTTC()}} €</p>
+    <p>Total Taxes: {{calculateTotalTaxAmount()}} €</p>
+    <p>Total Price (incl. VAT): {{calculateTotalCostAmount()}} €</p>
   </div>
 
 
-  <button class="green-button" (click)="goBack()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Back to Products</button>
+  <button class="green-button" (click)="navigateBackToProducts()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Back to Products</button>
 
 </div>

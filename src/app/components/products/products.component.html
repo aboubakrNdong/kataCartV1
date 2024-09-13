@@ -2,7 +2,7 @@
   <h1>Products</h1>
   <div class="filter-container">
     <label for="category">Filter by category: </label>
-    <select id="category" [(ngModel)]="selectedCategory" (change)="filterByCategory(selectedCategory)">
+    <select id="category" [(ngModel)]="selectedCategory" (change)="filterProductsByCategory(selectedCategory)">
       <option *ngFor="let category of categories" [value]="category">{{category}}</option>
     </select>
   </div>
@@ -13,12 +13,12 @@
     <div *ngFor="let product of filteredProducts" class="product-card">
       <h3>{{product.productName}}</h3>
       <p>Category: {{product.category}}</p>
-      <p>Price: {{calculateTTC(product) }}€</p>
+      <p>Price: {{calculateTotalCostWithTax(product) }}€</p>
       <p *ngIf="product.quantity > 0">In stock: {{product.quantity}}</p>
       <p *ngIf="product.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="product.quantity > 0">
         <input type="number" [(ngModel)]="product.selectedQuantity" min="1" [max]="product.quantity">
-        <button (click)="addToCart(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
+        <button (click)="addProductToCart(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
           <img src="assets/icons/cart.svg" alt="Add to Cart" class="icon"> Add to Cart
         </button>
       </div>
