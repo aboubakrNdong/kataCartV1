@@ -31,7 +31,7 @@ getProduits(): Observable<Produit[]> {
   }
 }
 
- getTousLesArticlesDuPanier(): Observable<Produit[]> {
+ getAllArticlesDuPanier(): Observable<Produit[]> {
     return this.articlesDuPanierSubject.asObservable();
   }
 
@@ -45,10 +45,28 @@ getProduits(): Observable<Produit[]> {
     this.articlesDuPanierSubject.next(this.articlesDuPanier);
   }
 
-  deleteProduitDuPanier(IdDuProduit: number): void {
-    this.articlesDuPanier = this.articlesDuPanier.filter(article => article.id !== IdDuProduit);
-    this.articlesDuPanierSubject.next(this.articlesDuPanier);
+  //Aprés suppression d'un produit dans le panier, on update la quantity 
+  updateQuantiteApresDelete(IdDuProduit: number, quantity: number): void {
+    const produit = this.produits.find(p => p.id === IdDuProduit);
+    if (produit) {
+      produit.quantity -= quantity;
+    }
   }
+
+  deleteProduitDuPanier(IdDuProduit: number, quantity: number): void {
+    const article = this.articlesDuPanier.find(article => article.id === IdDuProduit);
+    if (article) {
+      article.quantity -= quantity;
+      if (article.quantity <= 0) {
+        this.articlesDuPanier = this.articlesDuPanier.filter(article => article.id !== IdDuProduit);
+      }
+      this.articlesDuPanierSubject.next(this.articlesDuPanier);
+
+      this.updateQuantiteApresDelete(IdDuProduit, quantity);
+   
+    }
+  }
+ 
   
   //change this function in case it is necessary to apply the 5% on first-time products requires  
 

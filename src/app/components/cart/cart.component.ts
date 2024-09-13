@@ -16,13 +16,13 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.produitService.getTousLesArticlesDuPanier().subscribe(article => {
+    this.produitService.getAllArticlesDuPanier().subscribe(article => {
       this.articlesDansLePanier = article;
     });
   }
 
-  deleteProduitDuPanier(IdDuProduit: number): void {
-    this.produitService.deleteProduitDuPanier(IdDuProduit);
+  deleteProduitDuPanier(IdDuProduit: number, quantity: number): void {
+    this.produitService.deleteProduitDuPanier(IdDuProduit, quantity);
   }
 
   calculDeLaTaxeDuProduit(produit: Produit): number {

@@ -25,7 +25,10 @@
           <td>{{calculDeLaTaxeDuProduit(article) }} €</td>
           <td>{{calculatDuPrixTotalAvecLesTaxes(article) * article.quantity}}€</td>
           <td>
-            <button (click)="deleteProduitDuPanier(article.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Supprimer</button>
+            <input type="number" [(ngModel)]="article.selectedQuantity" min="1" [max]="article.quantity">
+            <button (click)="deleteProduitDuPanier(article.id, article.selectedQuantity || 1)">
+              <img src="assets/icons/remove.svg" alt="Remove" class="icon"> Supprimer
+            </button>
           </td>
         </tr>
       </tbody>
@@ -33,7 +36,6 @@
     <p>Taxes Total : {{calcuDuMontantTotalDeLataxe()}} €</p>
     <p>Prix Total (Avec Taxes): {{calculDuPrixTotalAvecLesTaxes()}} €</p>
   </div>
-
 
   <button (click)="goBackToProduits()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Retourner aux produits</button>
 
