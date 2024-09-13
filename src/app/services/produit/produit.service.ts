@@ -74,9 +74,9 @@ getProduits(): Observable<Produit[]> {
     let taxeAppliqueSurLeProduit = 0;
     if (categoryDuProduit !== 'Food' && categoryDuProduit !== 'Medecine') {
       taxeAppliqueSurLeProduit += categoryDuProduit === 'Books' ? 10 : 20;
-      if (isImported) {
-        taxeAppliqueSurLeProduit += 5;
-      }
+    }
+    if (isImported) {
+      taxeAppliqueSurLeProduit += 5;
     }
     
     const montantDeLaTaxeFinale = prixDuProduitSansTaxe * taxeAppliqueSurLeProduit / 100;

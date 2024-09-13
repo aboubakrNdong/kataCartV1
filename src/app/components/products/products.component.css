@@ -11,10 +11,16 @@
     margin-bottom: 20px;
   }
 
-  button .icon {
+  button .icon { 
     width: 10px;
     height: 10px;
     margin-right: 8px;
+  } 
+
+  @media (max-width: 768px) {
+    .product-card {
+        flex: 1 1 100%;
+    }
   }
 
 
