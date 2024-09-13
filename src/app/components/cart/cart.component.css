@@ -1,3 +1,4 @@
+
 .cart-item {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -10,4 +11,15 @@ button .icon {
   width: 10px;
   height: 10px;
   margin-right: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px ;
+  padding: 8px;
+  text-align: left;
 }

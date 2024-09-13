@@ -62,13 +62,13 @@ getProduits(): Observable<Produit[]> {
     }
     
     const montantDeLaTaxeFinale = prixDuProduitSansTaxe * taxeAppliqueSurLeProduit / 100;
-    return Math.round(montantDeLaTaxeFinale * 20) / 20; // Rounded to 0.05
+    return Math.round(montantDeLaTaxeFinale * 20) / 20; // arrondi à 2 décimal et à 0.05
   }
 
 
   calculatDuPrixTotalAvecLesTaxes(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
     const taxeFinaleApresCalcul = this.calculDeLaTaxeDuProduit(prixDuProduitSansTaxe, categoryDuProduit, isImported);
     const prixTotalTTCApresCalcul = prixDuProduitSansTaxe + taxeFinaleApresCalcul;
-    return Math.round(prixTotalTTCApresCalcul * 100) / 100; // Round to 2 decimal
+    return Math.round(prixTotalTTCApresCalcul * 100) / 100; // arrondi à 2 décimal après la virgule
   }
 }

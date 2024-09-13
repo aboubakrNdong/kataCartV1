@@ -25,7 +25,7 @@
           <td>{{calculDeLaTaxeDuProduit(article) }} €</td>
           <td>{{calculatDuPrixTotalAvecLesTaxes(article) * article.quantity}}€</td>
           <td>
-            <button (click)="deleteProduitDuPanier(article.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Remove</button>
+            <button (click)="deleteProduitDuPanier(article.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Supprimer</button>
           </td>
         </tr>
       </tbody>
@@ -35,6 +35,6 @@
   </div>
 
 
-  <button class="green-button" (click)="goBackToProduits()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Retourner aux produits</button>
+  <button (click)="goBackToProduits()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Retourner aux produits</button>
 
 </div>

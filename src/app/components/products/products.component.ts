@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
     produit.quantity -= quantity;
   }
 
-  calculateTotalCostWithTax(produit: Produit): number {
+  calculatDuPrixTotalAvecLesTaxes(produit: Produit): number {
     return this.produitService.calculatDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
   }
   

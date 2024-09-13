@@ -10,15 +10,15 @@
 
     
   <div class="product-grid">
-    <div *ngFor="let product of filtreProduit" class="product-card">
-      <h3>{{product.productName}}</h3>
-      <p>Categorie: {{product.category}}</p>
-      <p>Prix: {{calculateTotalCostWithTax(product) }}€</p>
-      <p *ngIf="product.quantity > 0">Quantité: {{product.quantity}}</p>
-      <p *ngIf="product.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
-      <div *ngIf="product.quantity > 0">
-        <input type="number" [(ngModel)]="product.selectedQuantity" min="1" [max]="product.quantity">
-        <button (click)="addProduitAuPanier(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
+    <div *ngFor="let produit of filtreProduit" class="product-card">
+      <h3>{{produit.productName}}</h3>
+      <p>Categorie: {{produit.category}}</p>
+      <p>Prix: {{calculatDuPrixTotalAvecLesTaxes(produit) }}€</p>
+      <p *ngIf="produit.quantity > 0">Quantité: {{produit.quantity}}</p>
+      <p *ngIf="produit.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
+      <div *ngIf="produit.quantity > 0">
+        <input type="number" [(ngModel)]="produit.selectedQuantity" min="1" [max]="produit.quantity">
+        <button (click)="addProduitAuPanier(produit, produit.selectedQuantity || 1)" [disabled]="produit.quantity === 0">
           <img src="assets/icons/cart.svg" alt="Add to Cart" class="icon"> Ajouter au panier
         </button>
       </div>
