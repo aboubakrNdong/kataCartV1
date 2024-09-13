@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-
+   //TODO add loader to app
   filterByCategory(category: string): void {
     this.selectedCategory = category;
     this.filteredProducts = category === 'All' 
@@ -45,7 +45,8 @@ export class ProductsComponent implements OnInit {
   calculateTTC(product: Product): number {
     return this.productService.calculateTTC(product.price, product.category, product.isImported);
   }
-
+  
+  //TODO add image to product
  
 
 }
