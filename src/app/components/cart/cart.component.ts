@@ -6,7 +6,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];

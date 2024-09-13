@@ -6,7 +6,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
    //TODO add loader to app
    filterProductsByCategory(category: string): void {
     this.selectedCategory = category;
-    this.filteredProducts = category === 'All' 
+    this.filteredProducts = category === 'All'  //TODO remove hard code ALL
       ? this.products 
       : this.products.filter(p => p.category === category);
   }

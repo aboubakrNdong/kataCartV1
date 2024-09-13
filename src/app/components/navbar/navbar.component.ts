@@ -4,7 +4,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;

@@ -13,8 +13,7 @@ export class ProductService {
   private cartItems: Product[] = [];
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
  //check if products are already stored, if not, fetch them from the json file
 
