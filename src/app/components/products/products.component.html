@@ -1,25 +1,25 @@
 <div class="container">
-  <h1>Products</h1>
+  <h1>Liste des Produits</h1>
   <div class="filter-container">
-    <label for="category">Filter by category: </label>
-    <select id="category" [(ngModel)]="selectedCategory" (change)="filterProductsByCategory(selectedCategory)">
-      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    <label for="category">Trier par: </label>
+    <select id="category" [(ngModel)]="categoryChoisie" (change)="filterProduitByCategory(categoryChoisie)">
+      <option *ngFor="let category of allCategories" [value]="category">{{category}}</option>
     </select>
   </div>
   <!--  //TODO display a modal for choosing the quantity of the product -->
 
     
   <div class="product-grid">
-    <div *ngFor="let product of filteredProducts" class="product-card">
+    <div *ngFor="let product of filtreProduit" class="product-card">
       <h3>{{product.productName}}</h3>
-      <p>Category: {{product.category}}</p>
-      <p>Price: {{calculateTotalCostWithTax(product) }}€</p>
-      <p *ngIf="product.quantity > 0">In stock: {{product.quantity}}</p>
+      <p>Categorie: {{product.category}}</p>
+      <p>Prix: {{calculateTotalCostWithTax(product) }}€</p>
+      <p *ngIf="product.quantity > 0">Quantité: {{product.quantity}}</p>
       <p *ngIf="product.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="product.quantity > 0">
         <input type="number" [(ngModel)]="product.selectedQuantity" min="1" [max]="product.quantity">
-        <button (click)="addProductToCart(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
-          <img src="assets/icons/cart.svg" alt="Add to Cart" class="icon"> Add to Cart
+        <button (click)="addProduitAuPanier(product, product.selectedQuantity || 1)" [disabled]="product.quantity === 0">
+          <img src="assets/icons/cart.svg" alt="Add to Cart" class="icon"> Ajouter au panier
         </button>
       </div>
     </div>

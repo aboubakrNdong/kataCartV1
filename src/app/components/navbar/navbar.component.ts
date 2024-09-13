@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product/product.service';
+import { ProduitService } from 'src/app/services/product/produit.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,13 +7,13 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  cartItemCount: number = 0;
+  nombreDeProduitDansLePanier: number = 0;
 
-  constructor(private productService: ProductService) { }
+  constructor(private produitService: ProduitService) { }
 
   ngOnInit(): void {
-    this.productService.getCartItems().subscribe(items => {
-      this.cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+    this.produitService.getTousLesArticlesDuPanier().subscribe(article=> {
+      this.nombreDeProduitDansLePanier = article.reduce((total, article) => total + article.quantity, 0);
     });
   }
 }

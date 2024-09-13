@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product/product.service';
+import { Produit } from 'src/app/models/produit';
+import { ProduitService } from 'src/app/services/product/produit.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,43 +9,43 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems: Product[] = [];
+  articlesDansLePanier: Produit[] = [];
 
-  constructor(private productService: ProductService,
+  constructor(private produitService: ProduitService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.productService.getCartItems().subscribe(items => {
-      this.cartItems = items;
+    this.produitService.getTousLesArticlesDuPanier().subscribe(article => {
+      this.articlesDansLePanier = article;
     });
   }
 
-  removeProductFromCart(productId: number): void {
-    this.productService.removeProductFromCart(productId);
+  deleteProduitDuPanier(IdDuProduit: number): void {
+    this.produitService.deleteProduitDuPanier(IdDuProduit);
   }
 
-  calculateProductTax(product: Product): number {
-    return this.productService.calculateProductTax(product.price, product.category, product.isImported);
+  calculDeLaTaxeDuProduit(produit: Produit): number {
+    return this.produitService.calculDeLaTaxeDuProduit(produit.price, produit.category, produit.isImported);
   }
 
-  calculateProductTotalCost(product: Product): number {
-    return this.productService.calculateTotalCost(product.price, product.category, product.isImported);
+  calculatDuPrixTotalAvecLesTaxes(produit: Produit): number {
+    return this.produitService.calculatDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
   }
 
-  calculateTotalTaxAmount(): number {
-    return this.cartItems.reduce((total, item) => 
-      total + this.calculateProductTax(item) * item.quantity, 0
+  calcuDuMontantTotalDeLataxe(): number {
+    return this.articlesDansLePanier.reduce((total, item) => 
+      total + this.calculDeLaTaxeDuProduit(item) * item.quantity, 0
     );
   }
 
-  calculateTotalCostAmount(): number {
-    return this.cartItems.reduce((total, item) => 
-      total + this.calculateProductTotalCost(item) * item.quantity, 0
+  calculDuPrixTotalAvecLesTaxes(): number {
+    return this.articlesDansLePanier.reduce((total, item) => 
+      total + this.calculatDuPrixTotalAvecLesTaxes(item) * item.quantity, 0
     );
   }
 
-  navigateBackToProducts(): void {
+  goBackToProduits(): void {
     this.router.navigate(['/']);
   }
 

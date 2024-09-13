@@ -1,40 +1,40 @@
 <div class="container">
-  <h2>Shopping Cart</h2>
-  <div *ngIf="cartItems.length === 0">
-    <p>Empty Cart</p>
+  <h2>Panier d'articles</h2>
+  <div *ngIf="articlesDansLePanier.length === 0">
+    <p>Panier vide</p>
   </div>
-  <div *ngIf="cartItems.length > 0">
+  <div *ngIf="articlesDansLePanier.length > 0">
     <table>
       <thead>
         <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Unit Price (excl. VAT)</th>
-          <th>Unit Price (incl. VAT)</th>
+          <th>Produit</th>
+          <th>Quantité</th>
+          <th>Prix Unitaire (Hors Taxes)</th>
+          <th>Prix Unitaire (Avec Taxes)</th>
           <th>Taxes</th>
-          <th>Total Price (incl. VAT)</th>
+          <th>Prix Total (Avec Taxes)</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of cartItems">
-          <td>{{item.productName}}</td>
-          <td>{{item.quantity}}</td>
-          <td>{{item.price}}€</td>
-          <td>{{calculateProductTotalCost(item) }} €</td>
-          <td>{{calculateProductTax(item) }} €</td>
-          <td>{{calculateProductTotalCost(item) * item.quantity}}€</td>
+        <tr *ngFor="let article of articlesDansLePanier">
+          <td>{{article.productName}}</td>
+          <td>{{article.quantity}}</td>
+          <td>{{article.price}}€</td>
+          <td>{{calculatDuPrixTotalAvecLesTaxes(article) }} €</td>
+          <td>{{calculDeLaTaxeDuProduit(article) }} €</td>
+          <td>{{calculatDuPrixTotalAvecLesTaxes(article) * article.quantity}}€</td>
           <td>
-            <button (click)="removeProductFromCart(item.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Remove</button>
+            <button (click)="deleteProduitDuPanier(article.id)"><img src="assets/icons/remove.svg" alt="Remove" class="icon"> Remove</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <p>Total Taxes: {{calculateTotalTaxAmount()}} €</p>
-    <p>Total Price (incl. VAT): {{calculateTotalCostAmount()}} €</p>
+    <p>Taxes Total : {{calcuDuMontantTotalDeLataxe()}} €</p>
+    <p>Prix Total (Avec Taxes): {{calculDuPrixTotalAvecLesTaxes()}} €</p>
   </div>
 
 
-  <button class="green-button" (click)="navigateBackToProducts()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Back to Products</button>
+  <button class="green-button" (click)="goBackToProduits()"><img src="assets/icons/back.svg" alt="Back" class="icon"> Retourner aux produits</button>
 
 </div>
