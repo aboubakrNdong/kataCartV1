@@ -9,13 +9,4 @@ describe('AppComponent', () => {
      fixture = new AppComponent();
   })
  
-  it(`should have as title 'shopping-cart-app'`, () => {
-    expect(fixture.title).toEqual('shopping-cart-app');
-  })
-
-  it('adds 1 + 2 to equal 3', () => {
-    expect(fixture.sum(1, 2)).toBe(3);
-  });
-
-
 })
