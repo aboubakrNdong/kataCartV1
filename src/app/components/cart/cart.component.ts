@@ -26,11 +26,11 @@ export class CartComponent implements OnInit {
   }
 
   calculDeLaTaxeDuProduit(produit: Produit): number {
-    return this.produitService.calculDeLaTaxeDuProduit(produit.price, produit.category, produit.isImported);
+    return this.produitService.calculDeLaTaxeDuProduit(produit, produit.price);
   }
 
   calcultDuPrixTtcDeChaqueArticle(produit: Produit): number {
-    return this.produitService.calculDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
+    return this.produitService.calculDuPrixTotalAvecLesTaxes(produit, produit.price);
   }
 
   calcuDuMontantTotalDeLataxe(): number {

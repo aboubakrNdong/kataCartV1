@@ -67,12 +67,12 @@ getAllProduitsDuStock(): Observable<Produit[]> {
  
   //change this function in case it is necessary to apply the 5% on first-time products requires  
 
-  calculDeLaTaxeDuProduit(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
+  calculDeLaTaxeDuProduit(produit: Produit, prixDuProduitSansTaxe: number): number {
     let taxeAppliqueSurLeProduit: number = 0;
-    if (categoryDuProduit !== 'Food' && categoryDuProduit !== 'Medecine') {
-      taxeAppliqueSurLeProduit += categoryDuProduit === 'Books' ? 10 : 20;
+    if (produit.category !== 'Food' && produit.category !== 'Medecine') {
+      taxeAppliqueSurLeProduit += produit.category === 'Books' ? 10 : 20;
     }
-    if (isImported) {
+    if (produit.isImported) {
       taxeAppliqueSurLeProduit += 5;
     }
     
@@ -80,8 +80,8 @@ getAllProduitsDuStock(): Observable<Produit[]> {
     return Math.round(montantDeLaTaxeFinale * 20) / 20; // arrondi à 2 décimal après la virgule
   }
 
-  calculDuPrixTotalAvecLesTaxes(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
-    const taxeFinaleApresCalcul = this.calculDeLaTaxeDuProduit(prixDuProduitSansTaxe, categoryDuProduit, isImported);
+  calculDuPrixTotalAvecLesTaxes(produit: Produit, prixDuProduitSansTaxe: number): number { //avoid using method with 3 arguments
+    const taxeFinaleApresCalcul = this.calculDeLaTaxeDuProduit(produit, prixDuProduitSansTaxe);
     const prixTotalTTCApresCalcul = prixDuProduitSansTaxe + taxeFinaleApresCalcul;
     return Math.round(prixTotalTTCApresCalcul * 100) / 100; // arrondi à 2 décimal et à 0.05
   }
