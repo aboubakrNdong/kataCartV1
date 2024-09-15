@@ -13,39 +13,35 @@ export class ProductsComponent implements OnInit {
   filtreProduit: Produit[] = [];
   allCategories: string[] = [];
   categoryChoisie: string = 'All';
-  NOT_AVAILABLE_MESSAGE = NOT_AVAILABLE_MESSAGE;
+  NOT_AVAILABLE_MESSAGE: string = NOT_AVAILABLE_MESSAGE;
 
   constructor(private produitService: ProduitService) { }
 
   ngOnInit(): void {
-    this.produitService.getProduits().subscribe((produits: Produit[]) => {
+    this.produitService.getAllProduitsDuStock().subscribe((produits: Produit[]) => {
       this.produits = produits;
-      // Initialize selectedQuantity for each product
+   
       this.produits.forEach(produit => produit.selectedQuantity = 1);
       this.filtreProduit = this.produits;
-      this.allCategories = ['All', ...new Set(this.produits.map(p => p.category))]; //TODO remove hard code ALL
+      this.allCategories = ['All', ...new Set(this.produits.map(p => p.category))];
     });
   }
 
-   //TODO add loader to app
+
    filterProduitByCategory(category: string): void {
     this.categoryChoisie = category;
-    this.filtreProduit = category === 'All'  //TODO remove hard code ALL
+    this.filtreProduit = category === 'All'  
       ? this.produits 
       : this.produits.filter(p => p.category === category);
   }
 
   addProduitAuPanier(produit: Produit, quantity: number): void {
     this.produitService.addProduitAuPanier(produit, quantity);
-    // Decrease the product quantity
-    produit.quantity -= quantity;
+    produit.quantity -= quantity;  // à chaque ajout il faut diminuer la quantité du produit dans le stock
   }
 
-  calculatDuPrixTotalAvecLesTaxes(produit: Produit): number {
-    return this.produitService.calculatDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
+  calculDuPrixTotalAvecLesTaxes(produit: Produit): number {
+    return this.produitService.calculDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
   }
   
-  //TODO add image to product
- 
-
 }

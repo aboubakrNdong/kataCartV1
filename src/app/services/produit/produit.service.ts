@@ -15,10 +15,9 @@ export class ProduitService {
 
   constructor(private http: HttpClient) {}
 
-
  //check if products are already stored, if not, fetch them from the json file
 
-getProduits(): Observable<Produit[]> {
+getAllProduitsDuStock(): Observable<Produit[]> {
   if (this.produits.length > 0) {
     return of(this.produits);
   } else {
@@ -63,15 +62,13 @@ getProduits(): Observable<Produit[]> {
       this.articlesDuPanierSubject.next(this.articlesDuPanier);
 
       this.updateQuantiteApresDelete(IdDuProduit, quantity);
-   
     }
   }
  
-  
   //change this function in case it is necessary to apply the 5% on first-time products requires  
 
   calculDeLaTaxeDuProduit(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
-    let taxeAppliqueSurLeProduit = 0;
+    let taxeAppliqueSurLeProduit: number = 0;
     if (categoryDuProduit !== 'Food' && categoryDuProduit !== 'Medecine') {
       taxeAppliqueSurLeProduit += categoryDuProduit === 'Books' ? 10 : 20;
     }
@@ -80,13 +77,12 @@ getProduits(): Observable<Produit[]> {
     }
     
     const montantDeLaTaxeFinale = prixDuProduitSansTaxe * taxeAppliqueSurLeProduit / 100;
-    return Math.round(montantDeLaTaxeFinale * 20) / 20; // arrondi à 2 décimal et à 0.05
+    return Math.round(montantDeLaTaxeFinale * 20) / 20; // arrondi à 2 décimal après la virgule
   }
 
-
-  calculatDuPrixTotalAvecLesTaxes(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
+  calculDuPrixTotalAvecLesTaxes(prixDuProduitSansTaxe: number, categoryDuProduit: string, isImported: boolean): number {
     const taxeFinaleApresCalcul = this.calculDeLaTaxeDuProduit(prixDuProduitSansTaxe, categoryDuProduit, isImported);
     const prixTotalTTCApresCalcul = prixDuProduitSansTaxe + taxeFinaleApresCalcul;
-    return Math.round(prixTotalTTCApresCalcul * 100) / 100; // arrondi à 2 décimal après la virgule
+    return Math.round(prixTotalTTCApresCalcul * 100) / 100; // arrondi à 2 décimal et à 0.05
   }
 }

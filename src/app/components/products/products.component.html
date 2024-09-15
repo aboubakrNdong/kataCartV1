@@ -6,14 +6,13 @@
       <option *ngFor="let category of allCategories" [value]="category">{{category}}</option>
     </select>
   </div>
-  <!--  //TODO display a modal for choosing the quantity of the product -->
 
     
   <div class="product-grid">
     <div *ngFor="let produit of filtreProduit" class="product-card">
       <h3>{{produit.productName}}</h3>
       <p>Categorie: {{produit.category}}</p>
-      <p>Prix: {{calculatDuPrixTotalAvecLesTaxes(produit) }}€</p>
+      <p>Prix: {{calculDuPrixTotalAvecLesTaxes(produit) }}€</p>
       <p *ngIf="produit.quantity > 0">Quantité: {{produit.quantity}}</p>
       <p *ngIf="produit.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="produit.quantity > 0">

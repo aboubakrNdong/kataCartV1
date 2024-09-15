@@ -21,9 +21,9 @@
           <td>{{article.productName}}</td>
           <td>{{article.quantity}}</td>
           <td>{{article.price}}€</td>
-          <td>{{calculatDuPrixTotalAvecLesTaxes(article) }} €</td>
+          <td>{{calcultDuPrixTtcDeChaqueArticle(article) }} €</td>
           <td>{{calculDeLaTaxeDuProduit(article) }} €</td>
-          <td>{{calculatDuPrixTotalAvecLesTaxes(article) * article.quantity}}€</td>
+          <td>{{calcultDuPrixTtcDeChaqueArticle(article) * article.quantity}}€</td>
           <td>
             <input type="number" [(ngModel)]="article.selectedQuantity" min="1" [max]="article.quantity">
             <button (click)="deleteProduitDuPanier(article.id, article.selectedQuantity || 1)">

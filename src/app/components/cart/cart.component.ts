@@ -29,8 +29,8 @@ export class CartComponent implements OnInit {
     return this.produitService.calculDeLaTaxeDuProduit(produit.price, produit.category, produit.isImported);
   }
 
-  calculatDuPrixTotalAvecLesTaxes(produit: Produit): number {
-    return this.produitService.calculatDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
+  calcultDuPrixTtcDeChaqueArticle(produit: Produit): number {
+    return this.produitService.calculDuPrixTotalAvecLesTaxes(produit.price, produit.category, produit.isImported);
   }
 
   calcuDuMontantTotalDeLataxe(): number {
@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
 
   calculDuPrixTotalAvecLesTaxes(): number {
     return this.articlesDansLePanier.reduce((total, article) => 
-      total + this.calculatDuPrixTotalAvecLesTaxes(article) * article.quantity, 0
+      total + this.calcultDuPrixTtcDeChaqueArticle(article) * article.quantity, 0
     );
   }
 
