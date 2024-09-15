@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NOT_AVAILABLE_MESSAGE } from 'src/app/constants/const-var';
-import { Produit } from 'src/app/models/produit';
-import { ProduitService } from 'src/app/services/produit/produit.service';
+import { NOT_AVAILABLE_MESSAGE } from '../../constants/const-var';
+import { Produit } from '../../models/produit';
+import { ProduitService } from '../../services/produit/produit.service';
 
 @Component({
   selector: 'app-products',
@@ -27,7 +27,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-
    filterProduitByCategory(category: string): void {
     this.categoryChoisie = category;
     this.filtreProduit = category === 'All'  
@@ -37,7 +36,7 @@ export class ProductsComponent implements OnInit {
 
   addProduitAuPanier(produit: Produit, quantity: number): void {
     this.produitService.addProduitAuPanier(produit, quantity);
-    produit.quantity -= quantity;  // à chaque ajout il faut diminuer la quantité du produit dans le stock
+    produit.quantity -= quantity;   //à chaque ajout il faut diminuer la quantité du produit dans le stock
   }
 
   calculDuPrixTotalAvecLesTaxes(produit: Produit): number {

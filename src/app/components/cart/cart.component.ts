@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Produit } from 'src/app/models/produit';
-import { ProduitService } from 'src/app/services/produit/produit.service';
+import { Produit } from '../../models/produit';
+import { ProduitService } from '../../services/produit/produit.service';
 
 @Component({
   selector: 'app-cart',
@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     );
   }
 
-  calculDuPrixTotalAvecLesTaxes(): number {
+  calculDuPrixTotalAvecLesTaxes(produit: Produit): number {
     return this.articlesDansLePanier.reduce((total, article) => 
       total + this.calcultDuPrixTtcDeChaqueArticle(article) * article.quantity, 0
     );

@@ -12,8 +12,8 @@ describe('NavbarComponent', () => {
   beforeEach(async () => {
     produitServiceStub = { //Stub créé pour le service ProduitService
       getAllArticlesDuPanier: () => of([
-        { id: 1, productName: 'Sapiens', price: 10, isImported: false, category: 'Category 1', quantity: 2 },
-        { id: 2, productName: 'Dior sauvage 100ml', price: 20, isImported: true, category: 'Category 2', quantity: 3 }
+        { id: 1, productName: 'Sapiens', price: 12.61, isImported: false, category: 'Books ', quantity: 2 },
+        { id: 2, productName: 'Dior sauvage 100ml', price: 73.58, isImported: true, category: 'Parfum', quantity: 3 }
       ])
     };
 
