@@ -4,6 +4,8 @@ import { CartComponent } from './cart.component';
 
 import { ProduitService } from '../../services/produit/produit.service';
 import { Produit } from 'src/app/models/produit';
+import { FormsModule } from '@angular/forms'; 
+
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -25,7 +27,8 @@ describe('CartComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ CartComponent ],
+      declarations: [ CartComponent ], 
+      imports:[FormsModule],
       providers: [{provide: ProduitService, useValue: produitServiceStub}]
     })
     .compileComponents();
