@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     );
   }
 
-  calculDuPrixTotalAvecLesTaxes(produit: Produit): number {
+  calculDuPrixTotalAvecLesTaxes(): number {
     return this.articlesDansLePanier.reduce((total, article) => 
       total + this.calcultDuPrixTtcDeChaqueArticle(article) * article.quantity, 0
     );

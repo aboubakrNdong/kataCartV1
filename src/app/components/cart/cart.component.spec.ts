@@ -44,7 +44,7 @@ describe('CartComponent', () => {
 
   it('il doit calculer la taxe appliquée sur le produit', () => {
     const produit: Produit= {  id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 };
-    expect(component.calculDuPrixTotalAvecLesTaxes(produit)).toBe(17);
+    expect(component.calculDuPrixTotalAvecLesTaxes()).toBe(17);
   //  expect(component).toBeTruthy();
   });
 
