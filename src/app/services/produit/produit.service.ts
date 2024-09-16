@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Produit } from 'src/app/models/produit';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { GlobalErrorHandler } from '../global-error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class ProduitService {
   private articlesDuPanier: Produit[] = [];
   private articlesDuPanierSubject = new BehaviorSubject<Produit[]>([]);
 
-  constructor(private http: HttpClient) { }
+
+
+  constructor(private http: HttpClient, private globalErrorHandler: GlobalErrorHandler) { }
 
   //check if products are already stored, if not, fetch them from the json file
   getAllProduitsDuStock(): Observable<Produit[]> {
@@ -24,6 +27,10 @@ export class ProduitService {
         map(produits => {
           this.produits = produits;
           return produits;
+        }),
+        catchError(error=> {
+            this.globalErrorHandler.handleError(error);
+            return of([]);
         })
       );
     }
