@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor(private produitService: ProduitService) { }
 
   ngOnInit(): void {
-    this.produitService.getAllArticlesDuPanier().subscribe(article=> {
+    this.produitService.getAllArticlesDuPanier().subscribe(article => {
       this.nombreDeProduitDansLePanier = article.reduce((total, article) => total + article.quantity, 0);
     });
   }

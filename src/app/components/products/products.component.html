@@ -7,7 +7,7 @@
     </select>
   </div>
 
-    
+
   <div class="product-grid">
     <div *ngFor="let produit of filtreProduit" class="product-card">
       <h3>{{produit.productName}}</h3>
@@ -17,7 +17,8 @@
       <p *ngIf="produit.quantity === 0">{{NOT_AVAILABLE_MESSAGE}}</p>
       <div *ngIf="produit.quantity > 0">
         <input type="number" [(ngModel)]="produit.selectedQuantity" min="1" [max]="produit.quantity">
-        <button (click)="addProduitAuPanier(produit, produit.selectedQuantity || 1)" [disabled]="produit.quantity === 0">
+        <button (click)="addProduitAuPanier(produit, produit.selectedQuantity || 1)"
+          [disabled]="produit.quantity === 0">
           <img src="assets/icons/cart.svg" alt="Add to Cart" class="icon"> Ajouter au panier
         </button>
       </div>

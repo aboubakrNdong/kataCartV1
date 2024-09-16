@@ -34,13 +34,13 @@ export class CartComponent implements OnInit {
   }
 
   calcuDuMontantTotalDeLataxe(): number {
-    return this.articlesDansLePanier.reduce((total, article) => 
+    return this.articlesDansLePanier.reduce((total, article) =>
       total + this.calculDeLaTaxeDuProduit(article) * article.quantity, 0
     );
   }
 
   calculDuPrixTotalAvecLesTaxes(): number {
-    return this.articlesDansLePanier.reduce((total, article) => 
+    return this.articlesDansLePanier.reduce((total, article) =>
       total + this.calcultDuPrixTtcDeChaqueArticle(article) * article.quantity, 0
     );
   }

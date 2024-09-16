@@ -13,24 +13,23 @@ export class ProduitService {
   private articlesDuPanier: Produit[] = [];
   private articlesDuPanierSubject = new BehaviorSubject<Produit[]>([]);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
- //check if products are already stored, if not, fetch them from the json file
-
-getAllProduitsDuStock(): Observable<Produit[]> {
-  if (this.produits.length > 0) {
-    return of(this.produits);
-  } else {
-    return this.http.get<Produit[]>('assets/produits.json').pipe(
-      map(produits => {
-        this.produits = produits;
-        return produits;
-      })
-    );
+  //check if products are already stored, if not, fetch them from the json file
+  getAllProduitsDuStock(): Observable<Produit[]> {
+    if (this.produits.length > 0) {
+      return of(this.produits);
+    } else {
+      return this.http.get<Produit[]>('assets/produits.json').pipe(
+        map(produits => {
+          this.produits = produits;
+          return produits;
+        })
+      );
+    }
   }
-}
 
- getAllArticlesDuPanier(): Observable<Produit[]> {
+  getAllArticlesDuPanier(): Observable<Produit[]> {
     return this.articlesDuPanierSubject.asObservable();
   }
 
@@ -44,7 +43,6 @@ getAllProduitsDuStock(): Observable<Produit[]> {
     this.articlesDuPanierSubject.next(this.articlesDuPanier);
   }
 
-  //Aprés suppression d'un produit dans le panier, on update la quantity 
   updateQuantiteApresDelete(IdDuProduit: number, quantity: number): void {
     const produit = this.produits.find(p => p.id === IdDuProduit);
     if (produit) {
@@ -64,7 +62,7 @@ getAllProduitsDuStock(): Observable<Produit[]> {
       this.updateQuantiteApresDelete(IdDuProduit, quantity);
     }
   }
- 
+
   //change this function in case it is necessary to apply the 5% on first-time products requires  
 
   calculDeLaTaxeDuProduit(produit: Produit, prixDuProduitSansTaxe: number): number {
@@ -75,7 +73,7 @@ getAllProduitsDuStock(): Observable<Produit[]> {
     if (produit.isImported) {
       taxeAppliqueSurLeProduit += 5;
     }
-    
+
     const montantDeLaTaxeFinale = prixDuProduitSansTaxe * taxeAppliqueSurLeProduit / 100;
     return Math.round(montantDeLaTaxeFinale * 20) / 20; // arrondi à 2 décimal après la virgule
   }

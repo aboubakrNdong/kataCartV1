@@ -4,13 +4,13 @@ import { CartComponent } from './cart.component';
 
 import { ProduitService } from '../../services/produit/produit.service';
 import { Produit } from 'src/app/models/produit';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
-  let produitServiceStub : Partial<ProduitService>; 
+  let produitServiceStub: Partial<ProduitService>;
 
 
   beforeEach(async () => {
@@ -20,18 +20,16 @@ describe('CartComponent', () => {
         { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 },
         { id: 2, productName: 'Asperin ', price: 6, isImported: true, category: 'Medecine', quantity: 1 }
       ]),
-      calculDuPrixTotalAvecLesTaxes:(produit: Produit, prix:number) => prix + 1,
+      calculDuPrixTotalAvecLesTaxes: (produit: Produit, prix: number) => prix + 1,
       calculDeLaTaxeDuProduit: (produit: Produit, prix: number) => 1 // Mock implementation
-
-
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ CartComponent ], 
-      imports:[FormsModule],
-      providers: [{provide: ProduitService, useValue: produitServiceStub}]
+      declarations: [CartComponent],
+      imports: [FormsModule],
+      providers: [{ provide: ProduitService, useValue: produitServiceStub }]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
@@ -43,9 +41,8 @@ describe('CartComponent', () => {
   });
 
   it('il doit calculer la taxe appliquée sur le produit', () => {
-    const produit: Produit= {  id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 };
+    const produit: Produit = { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 };
     expect(component.calculDuPrixTotalAvecLesTaxes()).toBe(17);
-  //  expect(component).toBeTruthy();
   });
 
 });

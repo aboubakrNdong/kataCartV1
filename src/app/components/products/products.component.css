@@ -1,26 +1,24 @@
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
+.product-card {
+  flex: 1 1 calc(33.333% - 20px);
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+button .icon {
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
   .product-card {
-    flex: 1 1 calc(33.333% - 20px);
-    border: 1px solid #ddd;
-    padding: 16px;
-    margin-bottom: 20px;
+    flex: 1 1 100%;
   }
-
-  button .icon { 
-    width: 10px;
-    height: 10px;
-    margin-right: 8px;
-  } 
-
-  @media (max-width: 768px) {
-    .product-card {
-        flex: 1 1 100%;
-    }
-  }
-
-
+}

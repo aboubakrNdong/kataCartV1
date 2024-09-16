@@ -7,7 +7,7 @@ import { ProduitService } from '../../services/produit/produit.service';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  let produitServiceStub : Partial<ProduitService>; 
+  let produitServiceStub: Partial<ProduitService>;
 
   beforeEach(async () => {
     produitServiceStub = { //Stub créé pour le service ProduitService
@@ -18,10 +18,10 @@ describe('NavbarComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ],
-      providers: [{provide: ProduitService, useValue: produitServiceStub}]
+      declarations: [NavbarComponent],
+      providers: [{ provide: ProduitService, useValue: produitServiceStub }]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
@@ -32,8 +32,8 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('doit afficher: le nombre de produit dans le panier est égale à 5',() => {
+  it('doit afficher: le nombre de produit dans le panier est égale à 5', () => {
     expect(component.nombreDeProduitDansLePanier).toBe(5);
   });
-  
+
 });

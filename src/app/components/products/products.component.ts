@@ -20,17 +20,17 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.produitService.getAllProduitsDuStock().subscribe((produits: Produit[]) => {
       this.produits = produits;
-   
+
       this.produits.forEach(produit => produit.selectedQuantity = 1);
       this.filtreProduit = this.produits;
       this.allCategories = ['All', ...new Set(this.produits.map(p => p.category))];
     });
   }
 
-   filterProduitByCategory(category: string): void {
+  filterProduitByCategory(category: string): void {
     this.categoryChoisie = category;
-    this.filtreProduit = category === 'All'  
-      ? this.produits 
+    this.filtreProduit = category === 'All'
+      ? this.produits
       : this.produits.filter(p => p.category === category);
   }
 
@@ -42,5 +42,5 @@ export class ProductsComponent implements OnInit {
   calculDuPrixTotalAvecLesTaxes(produit: Produit): number {
     return this.produitService.calculDuPrixTotalAvecLesTaxes(produit, produit.price);
   }
-  
+
 }
