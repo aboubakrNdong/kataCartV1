@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   constructor(private produitService: ProduitService) { }
 
   ngOnInit(): void {
-    this.produitService.getAllProduitsDuStock().subscribe((produits: Produit[]) => {
+    this.produitService.AllProduitsDuStock.subscribe((produits: Produit[]) => {
       this.produits = produits;
 
       this.produits.forEach(produit => produit.selectedQuantity = 1);

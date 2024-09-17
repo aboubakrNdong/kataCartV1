@@ -19,7 +19,7 @@ export class ProduitService {
   constructor(private http: HttpClient, private globalErrorHandler: GlobalErrorHandler) { }
 
   //check if products are already stored, if not, fetch them from the json file
-  getAllProduitsDuStock(): Observable<Produit[]> {
+  get AllProduitsDuStock(): Observable<Produit[]> {
     if (this.produits.length > 0) {
       return of(this.produits);
     } else {
@@ -36,7 +36,7 @@ export class ProduitService {
     }
   }
 
-  getAllArticlesDuPanier(): Observable<Produit[]> {
+  get AllArticlesDuPanier(): Observable<Produit[]> {
     return this.articlesDuPanierSubject.asObservable();
   }
 

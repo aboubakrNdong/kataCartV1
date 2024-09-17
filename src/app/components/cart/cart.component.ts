@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.produitService.getAllArticlesDuPanier().subscribe(article => {
+    this.produitService.AllArticlesDuPanier.subscribe(article => {
       this.articlesDansLePanier = article;
     });
   }
