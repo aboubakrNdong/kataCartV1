@@ -16,10 +16,12 @@ describe('CartComponent', () => {
   beforeEach(async () => {
 
     produitServiceStub = { //Stub créé pour le service ProduitService
-      getAllArticlesDuPanier: () => of([
+      get AllArticlesDuPanier () {
+        return of([
         { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 },
         { id: 2, productName: 'Asperin ', price: 6, isImported: true, category: 'Medecine', quantity: 1 }
-      ]),
+      ]);
+    },
       calculDuPrixTotalAvecLesTaxes: (produit: Produit, prix: number) => prix + 1,
       calculDeLaTaxeDuProduit: (produit: Produit, prix: number) => 1 // Mock implementation
     };

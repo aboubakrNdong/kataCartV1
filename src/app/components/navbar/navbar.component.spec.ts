@@ -11,11 +11,13 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     produitServiceStub = { //Stub créé pour le service ProduitService
-      getAllArticlesDuPanier: () => of([
+      get AllArticlesDuPanier () {
+        return of([
         { id: 1, productName: 'Sapiens', price: 12.61, isImported: false, category: 'Books ', quantity: 2 },
         { id: 2, productName: 'Dior sauvage 100ml', price: 73.58, isImported: true, category: 'Parfum', quantity: 3 }
-      ])
-    };
+      ]);
+    },
+  };
 
     await TestBed.configureTestingModule({
       declarations: [NavbarComponent],

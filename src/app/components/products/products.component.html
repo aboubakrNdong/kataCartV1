@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Liste des Produits</h1>
   <div class="filter-container">
-    <label for="category">Trier par: </label>
+    <label for="category">Filtrer par :  </label>
     <select id="category" [(ngModel)]="categoryChoisie" (change)="filterProduitByCategory(categoryChoisie)">
       <option *ngFor="let category of allCategories" [value]="category">{{category}}</option>
     </select>

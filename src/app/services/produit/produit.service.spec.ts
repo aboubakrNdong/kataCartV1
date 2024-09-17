@@ -12,14 +12,17 @@ describe('ProduitService', () => {
   beforeEach(() => {
 
     produitServiceStub = { //Stub créé pour le service ProduitService
-      getAllProduitsDuStock: () => of([
-        { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 2 },
-        { id: 2, productName: 'Asperin ', price: 6, isImported: true, category: 'Medecine', quantity: 1 }
-      ]),
+      get AllProduitsDuStock() {
+        return of([
+          { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 2 },
+          { id: 2, productName: 'Asperin ', price: 6, isImported: true, category: 'Medecine', quantity: 1 }
+        ]);
+      },
 
       deleteProduitDuPanier: (IdDuProduit: number, quantity: number) => quantity - 1,
       addProduitAuPanier: (produit: Produit, quantity: number) => quantity + 2,
       updateQuantiteApresDelete: (idDuProduit: number, quantity: number) => quantity - 3
+
     };
 
     TestBed.configureTestingModule({

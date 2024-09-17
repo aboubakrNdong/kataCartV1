@@ -13,11 +13,12 @@ describe('ProductsComponent', () => {
 
   beforeEach(async () => {
     produitServiceStub = { //Stub créé pour le service ProduitService
-      getAllProduitsDuStock: () => of([
+      get AllProduitsDuStock() {
+        return of([
         { id: 1, productName: 'Paracetamol ', price: 9, isImported: true, category: 'Medecine ', quantity: 1 },
         { id: 2, productName: 'Asperin ', price: 6, isImported: true, category: 'Medecine', quantity: 1 }
-      ]),
-
+      ]);
+    },
       calculDuPrixTotalAvecLesTaxes: (produit: Produit, prix: number) => prix + 2  //mock des taxes à 2 euros 
     };
 
