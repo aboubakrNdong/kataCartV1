@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProduitService } from './services/produit/produit.service';
-import { GlobalErrorHandler } from './services/global-error-handler.service';
+import { GlobalErrorHandler } from './services/ErrorHandler/global-error-handler.service';
 
 @NgModule({
   declarations: [

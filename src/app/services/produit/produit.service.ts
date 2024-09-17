@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Produit } from 'src/app/models/produit';
 import { catchError, map } from 'rxjs/operators';
-import { GlobalErrorHandler } from '../global-error-handler.service';
+import { GlobalErrorHandler } from '../ErrorHandler/global-error-handler.service';
 
 @Injectable({
   providedIn: 'root'
